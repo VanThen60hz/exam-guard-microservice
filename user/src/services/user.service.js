@@ -4,9 +4,6 @@ const mongoose = require("mongoose");
 const { getInfoData } = require("../utils");
 const { BadRequestError } = require("../core/error.response");
 const userRepo = require("../repo/user.repo");
-const cheatingHistoryRepo = require("../repo/cheatingHistory.repo");
-const cheatingStatisticRepo = require("../repo/cheatingStatistic.repo");
-const gradeRepo = require("../repo/grade.repo");
 const cloudinary = require("../configs/cloudinary.config");
 
 class UserService {
@@ -79,14 +76,6 @@ class UserService {
             if (!deletedUser) {
                 throw new BadRequestError("User not found");
             }
-
-            const promises = [
-                cheatingStatisticRepo.deleteByStudent(userId),
-                cheatingHistoryRepo.deleteByStudent(userId),
-                gradeRepo.deleteByStudent(userId),
-            ];
-
-            await Promise.all(promises);
 
             return { message: "User and related records deleted successfully" };
         } catch (error) {

@@ -10,7 +10,6 @@ const roles = require("../constants/roles");
 const userRepo = require("../repo/user.repo");
 const redisService = require("./redis.service");
 const sendEmail = require("../utils/emailSender");
-const { log } = require("console");
 
 class AccessService {
     static handlerRefreshToken = async ({ refreshToken, user, keyStore }) => {
@@ -175,6 +174,7 @@ class AccessService {
             privateKey,
             publicKey,
         });
+
         return {
             user: getInfoData({
                 fields: [

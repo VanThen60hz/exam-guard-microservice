@@ -4,7 +4,6 @@ const { default: helmet } = require("helmet");
 const morgan = require("morgan");
 const app = express();
 const cors = require("cors");
-const examCron = require("./cron/examCron"); // Ensure this is imported
 
 // init middlewares
 app.use(express.json()); // Thêm middleware để phân tích cú pháp JSON
@@ -14,10 +13,6 @@ app.use(compression());
 app.use(cors());
 // init db
 require("./dbs/init.mongodb");
-
-// Start the cron job
-
-examCron();
 
 // init routes
 app.use("/", require("./routers"));

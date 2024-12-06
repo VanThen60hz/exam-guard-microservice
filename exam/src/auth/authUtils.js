@@ -83,8 +83,10 @@ const authentication = asyncHandler(async (req, res, next) => {
     //3
     const accessToken = req.headers[HEADER.AUTHORIZATION];
     if (!accessToken) throw new UnauthorizedError("Unauthorized");
+
     try {
         const decodeUser = JWT.verify(accessToken, keyStore.publicKey);
+
         if (userId !== decodeUser.userId) throw new UnauthorizedError("Invalid Token");
         req.keyStore = keyStore;
         req.userId = userId;

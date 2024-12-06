@@ -10,24 +10,6 @@ const router = express.Router();
 // // check permission
 // router.use(permission("0000"));
 
-// notification router
-router.use("/api/notification", require("./notification"));
-
-// cheating router
-router.use("/api/cheating", require("./cheating"));
-
-// grade router
-router.use("/api/grade", require("./grade"));
-
-// answer router
-router.use("/api/answer", require("./answer"));
-
-// exam router
-router.use("/api/question", require("./question"));
-
-// exam router
-router.use("/api/exam", require("./exam"));
-
 // user router
 router.use("/api/user", require("./user"));
 
